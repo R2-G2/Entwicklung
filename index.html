@@ -69,8 +69,9 @@
       </header>
 
       <div class="meta">
-        <div class="item">Start: <strong id="startDate">—</strong></div>
-        <div class="item">Ende: <strong id="endDate">—</strong></div>
+        <div class="item">Start: <strong id="startVal">—</strong <em id="startDate">—</em></div>
+        <div class="item">Ende: <strong id="endVal">—</strong> <em id="endDate">—</em></div>
+        <div class="item">Spanne: <strong id="spanVal">—</strong></div>
         <div class="item">Max: <strong id="maxVal">—</strong></div>
         <div class="item">Min: <strong id="minVal">—</strong></div>
         <div class="item">Differenz: <strong id="diffVal">—</strong></div>
@@ -114,12 +115,18 @@
       const endDateObj = entries[entries.length-1] ? entries[entries.length-1].date : null;
       const startDate = startDateObj ? startDateObj.toLocaleDateString('de-DE') : '-';
       const endDate = endDateObj ? endDateObj.toLocaleDateString('de-DE') : '-';
+      const startVal = values[0];
+      const endVal = values[values.length - 1];
+      const spanVal = startVal - endVal;
       const maxVal = Math.max(...values.map(v=>isFinite(v)?v:0));
       const minVal = Math.min(...values.map(v=>isFinite(v)?v:0));
       const diffVal = maxVal - minVal;
 
       document.getElementById('startDate').textContent = startDate;
       document.getElementById('endDate').textContent = endDate;
+      document.getElementById('startVal').textContent = startVal;
+      document.getElementById('endVal').textContent = endVal;
+      document.getElementById('spanVal').textContent = spanVal;
       document.getElementById('maxVal').textContent = maxVal;
       document.getElementById('minVal').textContent = minVal;
       document.getElementById('diffVal').textContent = diffVal;
